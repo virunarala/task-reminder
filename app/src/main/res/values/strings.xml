@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">TaskReminder</string>
+    <string name="title_hint">Title</string>
+    <string name="description_hint">Description</string>
+    <string name="priority_hint">Priority</string>
+    <string name="date_picker_hint">DD/MM/YY</string>
+    <string name="time_picker_hint">HH:MM</string>
+    <string name="alarm_switch_text">Alarm\nWould you like to reminded with an alarm?</string>
+    <string name="new_task_title">New Task</string>
+    <string name="add_task_button_label">ADD TASK</string>
+    <string name="fab_content_description">Add a new Task</string>
+    <string name="priority_label">Priority</string>
+    <string name="alarm_status">Alarm status</string>
+
+
+    <string-array name="priority_array">
+        <item>Very important</item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+        <item>Unimportant</item>
+    </string-array>
+
+
+    <string name="edit_task_title">Edit Task</string>
+    <string name="update_task_button_label">Save</string>
+    <string name="delete_task_button_label">Delete</string>
+    <string name="cancel_button_label">CANCEL</string>
+    <string name="empty_list_text">Click \'+\' to add a new Task</string>
+
+
+<!--    Notifications-->
+    <string name="task_notification_channel_id" translatable="false">task_channel</string>
+    <string name="task_notification_channel_name">Task</string>
+    <string name="task_notification_title">A Task is due today</string>
+
+</resources>

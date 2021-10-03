@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/taskFragment">
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.taskreminder.tasks.TaskFragment"
+        android:label="TaskFragment"
+        tools:layout="@layout/fragment_task">
+        <action
+            android:id="@+id/action_taskFragment_to_taskAddFragment"
+            app:destination="@id/taskAddFragment" />
+        <action
+            android:id="@+id/action_taskFragment_to_taskEditFragment"
+            app:destination="@id/taskEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskAddFragment"
+        android:name="com.example.taskreminder.taskadd.TaskAddFragment"
+        android:label="TaskAddFragment"
+        tools:layout="@layout/fragment_task_add">
+        <action
+            android:id="@+id/action_taskAddFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskEditFragment"
+        android:name="com.example.taskreminder.taskedit.TaskEditFragment"
+        android:label="TaskEditFragment"
+        tools:layout="@layout/fragment_task_edit">
+        <action
+            android:id="@+id/action_taskEditFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+        <argument
+            android:name="taskTitle"
+            app:argType="string" />
+        <argument
+            android:name="taskDescription"
+            app:argType="string" />
+        <argument
+            android:name="taskPriority"
+            app:argType="integer" />
+        <argument
+            android:name="taskDate"
+            app:argType="string" />
+        <argument
+            android:name="taskTime"
+            app:argType="string" />
+        <argument
+            android:name="taskAlarmFlag"
+            app:argType="boolean" />
+        <argument
+            android:name="taskId"
+            app:argType="long" />
+    </fragment>
+</navigation>
