@@ -120,6 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/update_task_button_label"
+            android:backgroundTint="@color/button_color"
             android:onClick="@{()->viewModel.onUpdateTaskClick()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/alarmSwitch"
@@ -132,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:text="@string/cancel_button_label"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/button_color"
             app:layout_constraintBottom_toBottomOf="@+id/updateTaskButton"
             app:layout_constraintEnd_toStartOf="@+id/updateTaskButton"
             app:layout_constraintTop_toTopOf="@+id/updateTaskButton" />

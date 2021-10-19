@@ -16,39 +16,31 @@
     android:layout_height="match_parent"
     tools:context=".taskadd.TaskAddFragment">
 
-    <TextView
-        android:id="@+id/newTaskTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_task_title"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"/>
-
     <EditText
         android:id="@+id/titleEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/title_hint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newTaskTitle"
         android:layout_marginStart="@dimen/margin_start_end"
-        android:layout_marginEnd="@dimen/margin_start_end"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="48dp"
+        android:hint="@string/title_hint"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no"
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/descriptionEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start_end"
+        android:layout_marginTop="@dimen/margin_textview_top"
         android:hint="@string/description_hint"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleEditText"
-        android:layout_marginStart="@dimen/margin_start_end"
-        android:layout_marginEnd="@dimen/margin_start_end"
-        android:layout_marginTop="@dimen/margin_textview_top"/>
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"/>
 
 
     <TextView
@@ -61,7 +53,8 @@
         android:text="@string/priority_label"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionEditText"
+        android:importantForAutofill="no"/>
 
     <Spinner
         android:id="@+id/prioritySpinner"
@@ -69,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:hint="@string/priority_hint"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/prioritySpinnerLabel"
         app:layout_constraintStart_toEndOf="@+id/prioritySpinnerLabel" />
 
@@ -76,50 +70,51 @@
         android:id="@+id/datePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/date_picker_hint"
-        android:onClick="@{()->viewModel.onDatePickerClicked()}"
-        android:text="@{viewModel.dateText}"
+        android:layout_marginTop="@dimen/margin_textview_top"
+        android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:cursorVisible="false"
+        android:hint="@string/date_picker_hint"
+        android:minHeight="48dp"
+        android:onClick="@{()->viewModel.onDatePickerClicked()}"
+        android:text="@{viewModel.dateText}"
         app:layout_constraintTop_toBottomOf="@+id/prioritySpinner"
-        android:layout_marginStart="@dimen/margin_start_end"
-        android:layout_marginEnd="@dimen/margin_start_end"
-        android:layout_marginTop="@dimen/margin_textview_top"/>
+        tools:layout_editor_absoluteX="16dp" />
 
     <EditText
         android:id="@+id/timePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/time_picker_hint"
-        android:onClick="@{()->viewModel.onTimePickerClicked()}"
-        android:text="@{viewModel.timeText}"
+        android:layout_marginStart="@dimen/margin_start_end"
+        android:layout_marginTop="@dimen/margin_textview_top"
+        android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:cursorVisible="false"
+        android:hint="@string/time_picker_hint"
+        android:minHeight="48dp"
+        android:onClick="@{()->viewModel.onTimePickerClicked()}"
+        android:text="@{viewModel.timeText}"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker"
-        android:layout_marginStart="@dimen/margin_start_end"
-        android:layout_marginEnd="@dimen/margin_start_end"
-        android:layout_marginTop="@dimen/margin_textview_top"/>
+        app:layout_constraintTop_toBottomOf="@+id/datePicker" />
 
     <Switch
         android:id="@+id/alarmSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@string/alarm_switch_text"
+        android:layout_marginStart="@dimen/margin_start_end"
+        android:layout_marginTop="@dimen/margin_textview_top"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timePicker"
-        android:layout_marginStart="@dimen/margin_start_end"
-        android:layout_marginEnd="@dimen/margin_start_end"
-        android:layout_marginTop="@dimen/margin_textview_top"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        tools:ignore="UseSwitchCompatOrMaterialXml"
+        tools:text="@string/alarm_switch_text" />
 
     <Button
         android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_task_button_label"
+        android:backgroundTint="@color/button_color"
         android:onClick="@{()->viewModel.onAddTaskClick()}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alarmSwitch"

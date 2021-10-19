@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.example.taskreminder.tasks.TaskFragment"
-        android:label="TaskFragment"
+        android:label="Task Reminder"
         tools:layout="@layout/fragment_task">
         <action
             android:id="@+id/action_taskFragment_to_taskAddFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/taskAddFragment"
         android:name="com.example.taskreminder.taskadd.TaskAddFragment"
-        android:label="TaskAddFragment"
+        android:label="New Task"
         tools:layout="@layout/fragment_task_add">
         <action
             android:id="@+id/action_taskAddFragment_to_taskFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/taskEditFragment"
         android:name="com.example.taskreminder.taskedit.TaskEditFragment"
-        android:label="TaskEditFragment"
+        android:label="Edit Task"
         tools:layout="@layout/fragment_task_edit">
         <action
             android:id="@+id/action_taskEditFragment_to_taskFragment"
