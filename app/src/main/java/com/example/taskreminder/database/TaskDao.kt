@@ -1,12 +1,12 @@
 package com.example.taskreminder.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
+
 
 @Dao
 interface TaskDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(task : Task) : Long
 
     @Update
