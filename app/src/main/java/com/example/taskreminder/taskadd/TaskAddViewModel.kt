@@ -1,28 +1,25 @@
 package com.example.taskreminder.taskadd
 
 import android.app.AlarmManager
-import android.app.Application
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.core.app.AlarmManagerCompat
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.taskreminder.database.Task
 import com.example.taskreminder.utils.convertPriorityStringToInt
 import com.example.taskreminder.database.TaskDao
 import com.example.taskreminder.receiver.AlarmReceiver
-import com.example.taskreminder.utils.sendNotification
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class TaskAddViewModel(val database : TaskDao, application : Application) : AndroidViewModel(application) {
+@HiltViewModel
+class TaskAddViewModel @Inject constructor
+    (private val database : TaskDao, @ApplicationContext val application: Context) : ViewModel() {
 
 
     private val _isDatePickerClicked = MutableLiveData<Boolean>()
@@ -86,7 +83,7 @@ class TaskAddViewModel(val database : TaskDao, application : Application) : Andr
             val newTask = Task(
                 taskTitle = task.title,
                 taskDescription = task.description,
-                priorityValue = convertPriorityStringToInt(task.priority,getApplication<Application>().resources),
+                priorityValue = convertPriorityStringToInt(task.priority,application.resources),
                 taskDate = task.date,
                 taskTime = task.time,
                 alarmFlag = task.alarm
@@ -99,13 +96,13 @@ class TaskAddViewModel(val database : TaskDao, application : Application) : Andr
 //
 //            notificationManager.sendNotification(taskId,task.title,getApplication())
 
-            val notifyIntent = Intent(getApplication(), AlarmReceiver::class.java)
+            val notifyIntent = Intent(application, AlarmReceiver::class.java)
                 .putExtra("taskId",taskId)
                 .putExtra("taskTitle",task.title)
 
             //Creating a PendingIntent for Notification
             val notifyPendingIntent = PendingIntent.getBroadcast(
-                getApplication(),
+                application,
                 taskId.toInt(),
                 notifyIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT

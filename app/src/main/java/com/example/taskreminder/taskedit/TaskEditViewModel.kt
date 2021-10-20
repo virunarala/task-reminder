@@ -1,21 +1,21 @@
 package com.example.taskreminder.taskedit
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import android.content.Context
+import androidx.lifecycle.*
 import com.example.taskreminder.utils.convertPriorityStringToInt
 import com.example.taskreminder.database.Task
 import com.example.taskreminder.database.TaskDao
 import com.example.taskreminder.taskadd.TaskEditTextData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class TaskEditViewModel(val database : TaskDao,application : Application) :
-    AndroidViewModel(application) {
+@HiltViewModel
+class TaskEditViewModel @Inject constructor(val database : TaskDao, @ApplicationContext val application: Context) :
+    ViewModel() {
 
     private val _isDatePickerClicked = MutableLiveData<Boolean>()
     val isDatePickerClicked : LiveData<Boolean>
@@ -81,7 +81,7 @@ class TaskEditViewModel(val database : TaskDao,application : Application) :
                 taskId = taskId,
                 taskTitle = task.title,
                 taskDescription = task.description,
-                priorityValue = convertPriorityStringToInt(task.priority,getApplication<Application>().resources),
+                priorityValue = convertPriorityStringToInt(task.priority,application.resources),
                 taskDate = task.date,
                 taskTime = task.time,
                 alarmFlag = task.alarm

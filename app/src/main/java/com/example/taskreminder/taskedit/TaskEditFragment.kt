@@ -15,18 +15,21 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.taskreminder.R
 import com.example.taskreminder.database.TaskDatabase
 import com.example.taskreminder.databinding.FragmentTaskEditBinding
 import com.example.taskreminder.taskadd.TaskEditTextData
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private lateinit var viewModel : TaskEditViewModel
+    private val viewModel : TaskEditViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,15 +39,7 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val binding : FragmentTaskEditBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_task_edit,
             container,false)
 
-
-
-
         binding.lifecycleOwner = this
-
-        val application = requireNotNull(this.activity).application
-        val dataSource = TaskDatabase.getInstance(application).taskDao
-        val viewModelFactory = TaskEditViewModelFactory(dataSource,application)
-        viewModel = ViewModelProvider(this,viewModelFactory).get(TaskEditViewModel::class.java)
 
         binding.viewModel = viewModel
 

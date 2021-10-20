@@ -1,15 +1,16 @@
 package com.example.taskreminder.tasks
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.taskreminder.database.Task
 import com.example.taskreminder.database.TaskDao
-import com.example.taskreminder.database.TaskDatabase
+import com.example.taskreminder.database.TaskRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
-import kotlin.properties.Delegates
+import javax.inject.Inject
 
-class TaskViewModel(val database : TaskDao, application : Application) : AndroidViewModel(application) {
+@HiltViewModel
+class TaskViewModel @Inject constructor(private val database : TaskDao) : ViewModel() {
 
     private val _task = MutableLiveData<List<Task?>?>()
     val task : LiveData<List<Task?>?>

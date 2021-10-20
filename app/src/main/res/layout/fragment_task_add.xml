@@ -70,6 +70,7 @@
         android:id="@+id/datePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="@dimen/margin_textview_top"
         android:cursorVisible="false"
         android:focusable="false"
@@ -78,8 +79,8 @@
         android:minHeight="48dp"
         android:onClick="@{()->viewModel.onDatePickerClicked()}"
         android:text="@{viewModel.dateText}"
-        app:layout_constraintTop_toBottomOf="@+id/prioritySpinner"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prioritySpinner" />
 
     <EditText
         android:id="@+id/timePicker"

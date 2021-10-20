@@ -11,16 +11,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.taskreminder.R
+import com.example.taskreminder.database.TaskDao
 import com.example.taskreminder.database.TaskDatabase
 import com.example.taskreminder.databinding.FragmentTaskBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TaskFragment : Fragment() {
 
-    private lateinit var viewModel : TaskViewModel
+    private val viewModel : TaskViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,10 +38,8 @@ class TaskFragment : Fragment() {
         binding.setLifecycleOwner(this)
 
         //Creating the ViewModel
-        val application = requireNotNull(this.activity).application
-        val dataSource = TaskDatabase.getInstance(application).taskDao
-        val viewModelFactory = TaskViewModelFactory(dataSource,application)
-        viewModel = ViewModelProvider(this,viewModelFactory).get(TaskViewModel::class.java)
+//        val application = requireNotNull(this.activity).application
+//        val dataSource = TaskDatabase.getInstance(application).taskDao
 
         binding.viewModel = viewModel
 

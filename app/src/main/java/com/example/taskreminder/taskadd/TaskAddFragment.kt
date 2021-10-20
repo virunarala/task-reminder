@@ -15,18 +15,20 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.taskreminder.R
 import com.example.taskreminder.database.TaskDatabase
 import com.example.taskreminder.databinding.FragmentTaskAddBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
-    //Shared ViewModel to pass Date from DatePickerFragment dialog fragment to TaskEditFragment  by activityViewModels()
-    private lateinit var viewModel : TaskAddViewModel
+    private val viewModel : TaskAddViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -37,13 +39,6 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
         container,false)
 
         binding.lifecycleOwner = this
-
-        //Creating the ViewModel
-        val application = requireNotNull(this.activity).application
-        val dataSource = TaskDatabase.getInstance(application).taskDao
-        val viewModelFactory = TaskAddViewModelFactory(dataSource,application)
-        viewModel = ViewModelProvider(this,viewModelFactory).get(TaskAddViewModel::class.java)
-
 
         binding.viewModel = viewModel
 
