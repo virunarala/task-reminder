@@ -5,7 +5,7 @@
     <string name="priority_hint">Priority</string>
     <string name="date_picker_hint">DD/MM/YY</string>
     <string name="time_picker_hint">HH:MM</string>
-    <string name="alarm_switch_text">Alarm\nWould you like to reminded with an alarm?</string>
+    <string name="alarm_switch_text">Alarm\nWould you like to be reminded with an alarm?</string>
     <string name="new_task_title">New Task</string>
     <string name="add_task_button_label">ADD</string>
     <string name="fab_content_description">Add a new Task</string>
