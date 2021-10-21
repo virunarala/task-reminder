@@ -25,6 +25,10 @@
         <action
             android:id="@+id/action_taskAddFragment_to_taskFragment"
             app:destination="@id/taskFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
             app:popUpTo="@id/taskFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -36,6 +40,10 @@
         <action
             android:id="@+id/action_taskEditFragment_to_taskFragment"
             app:destination="@id/taskFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
             app:popUpTo="@id/taskFragment"
             app:popUpToInclusive="true" />
         <argument
