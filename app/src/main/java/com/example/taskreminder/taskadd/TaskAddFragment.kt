@@ -141,6 +141,7 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
                 val time = timeFormat.format(calendar.time)
 
                 viewModel._timeText.value = time
+                binding.alarmSwitch.visibility = View.VISIBLE
             }
         }
 

@@ -113,26 +113,41 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         })
 
 
+
         val calendar = Calendar.getInstance()
 
         val dateFormat = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH)
-        val dateArgument = dateFormat.parse(args.taskDate)!!
-
-        //Using variables to ensure a new DatePicker is created with the Date that was set
-        var dayArgument = dateArgument.date
-        var monthArgument = dateArgument.month
-        //Since the Date object's year parameter is computed as given year - 1900, 1900 is being added
-        var yearArgument = dateArgument.year + 1900
-
+        lateinit var dateArgument: Date
+        var dayArgument: Int
+        var monthArgument: Int
+        var yearArgument: Int
+//        //Using variables to ensure a new DatePicker is created with the Date that was set
+//        if(args.taskDate!="") {
+//            dateArgument = dateFormat.parse(args.taskDate)!!
+//            dayArgument = dateArgument.date
+//            monthArgument = dateArgument.month
+//            //Since the Date object's year parameter is computed as given year - 1900, 1900 is being added
+//            yearArgument = dateArgument.year + 1900
+//        }
 
         //DatePicker *Created as an inner class to have access to ViewModel
         class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
             override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-                calendar.set(Calendar.DAY_OF_MONTH,dayArgument)
-                calendar.set(Calendar.MONTH,monthArgument)
-                calendar.set(Calendar.YEAR,yearArgument)
+                if(args.taskDate!=""){
+                    //Using variables to ensure a new DatePicker is created with the Date that was set
+                    dateArgument = dateFormat.parse(args.taskDate)!!
+                    dayArgument = dateArgument.date
+                    monthArgument = dateArgument.month
+                    //Since the Date object's year parameter is computed as given year - 1900, 1900 is being added
+                    yearArgument = dateArgument.year + 1900
+
+                    calendar.set(Calendar.DAY_OF_MONTH,dayArgument)
+                    calendar.set(Calendar.MONTH,monthArgument)
+                    calendar.set(Calendar.YEAR,yearArgument)
+                }
+
 
 
 
@@ -164,19 +179,26 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
 
         val timeFormat = SimpleDateFormat("HH:mm",Locale.ENGLISH)
-        val timeArgument = timeFormat.parse(args.taskTime)!!
+        lateinit var timeArgument: Date
+
 
         //Using variables to ensure a new DatePicker is created with the Date that was set
-        var hourArgument = timeArgument.hours
-        var minuteArgument = timeArgument.minutes
+        var hourArgument:Int
+        var minuteArgument:Int
 
         //TimePicker *Created as an inner class to have access to ViewModel
         class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
             override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-                calendar.set(Calendar.HOUR_OF_DAY,hourArgument)
-                calendar.set(Calendar.MINUTE,minuteArgument)
+                if(args.taskTime!="") {
+                    timeArgument = timeFormat.parse(args.taskTime)!!
+                    hourArgument = timeArgument.hours
+                    minuteArgument = timeArgument.minutes
+
+                    calendar.set(Calendar.HOUR_OF_DAY, hourArgument)
+                    calendar.set(Calendar.MINUTE, minuteArgument)
+                }
 
                 val hour = calendar.get(Calendar.HOUR_OF_DAY)
                 val minute = calendar.get(Calendar.MINUTE)
@@ -195,6 +217,7 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 val time = timeFormat.format(calendar.time)
 
                 viewModel._timeText.value = time
+                binding.alarmSwitch.visibility = View.VISIBLE
             }
         }
 

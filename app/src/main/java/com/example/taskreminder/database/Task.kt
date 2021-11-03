@@ -17,12 +17,12 @@ data class Task(
     val priorityValue : Int = 1,
 
     @ColumnInfo(name="date")
-    val taskDate : String,
+    val taskDate : String = "",
 
     @ColumnInfo(name="time")
-    val taskTime : String,
+    val taskTime : String = "",
 
     @ColumnInfo(name="alarm")
-    val alarmFlag : Boolean
+    val alarmFlag : Boolean = false
 )
 
