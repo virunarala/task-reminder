@@ -1,8 +1,6 @@
 package com.example.taskreminder.tasks
 
-import android.view.View
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,9 +11,7 @@ import com.example.taskreminder.database.Task
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView : RecyclerView, data : List<Task>?){
     val adapter = recyclerView.adapter as TaskAdapter
-//    val parent = recyclerView.parent as LinearLayout
-//    val emptyListTextView = parent.findViewById(R.id.emptyListTextView) as TextView
-        adapter.submitList(data)
+    adapter.submitList(data)
 }
 
 @BindingAdapter("setPriority")

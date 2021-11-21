@@ -41,8 +41,4 @@ class TaskViewModel @Inject constructor(private val database : TaskDao) : ViewMo
         }
     }
 
-
-
-
-
 }
