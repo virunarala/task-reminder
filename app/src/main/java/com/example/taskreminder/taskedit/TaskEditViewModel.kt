@@ -6,6 +6,7 @@ import com.example.taskreminder.utils.convertPriorityStringToInt
 import com.example.taskreminder.database.Task
 import com.example.taskreminder.database.TaskDao
 import com.example.taskreminder.taskadd.TaskEditTextData
+import com.example.taskreminder.utils.setNotification
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -87,6 +88,11 @@ class TaskEditViewModel @Inject constructor(val database : TaskDao, @Application
                 alarmFlag = task.alarm
             )
             update(newTask)
+
+            if(newTask.alarmFlag)
+                setNotification(taskId,task,application)
+
+
             hasTaskUpdated.value = true
         }
     }

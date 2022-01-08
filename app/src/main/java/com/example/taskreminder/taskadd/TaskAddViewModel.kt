@@ -10,6 +10,7 @@ import com.example.taskreminder.database.Task
 import com.example.taskreminder.utils.convertPriorityStringToInt
 import com.example.taskreminder.database.TaskDao
 import com.example.taskreminder.receiver.AlarmReceiver
+import com.example.taskreminder.utils.setNotification
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
@@ -46,8 +47,7 @@ class TaskAddViewModel @Inject constructor
     val hasTaskCreated = MutableLiveData<Boolean>()
 
 
-    //Fields Alarm and Notification features
-    private val alarmManager = application.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
 
 
 
@@ -91,51 +91,9 @@ class TaskAddViewModel @Inject constructor
             val taskId = insert(newTask)
             hasTaskCreated.value = true
 
-//            val notificationManager = ContextCompat.getSystemService(getApplication(),
-//                NotificationManager::class.java) as NotificationManager
-//
-//            notificationManager.sendNotification(taskId,task.title,getApplication())
 
-            val notifyIntent = Intent(application, AlarmReceiver::class.java)
-                .putExtra("taskId",taskId)
-                .putExtra("taskTitle",task.title)
-
-            //Creating a PendingIntent for Notification
-            val notifyPendingIntent = PendingIntent.getBroadcast(
-                application,
-                taskId.toInt(),
-                notifyIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
-            )
-
-            if(task.date!=""&&task.time!="") {
-                val triggerDate = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(task.date)!!
-                val triggerTime = SimpleDateFormat("HH:mm", Locale.ENGLISH).parse(task.time)!!
-
-                val day = triggerDate.date
-                val month = triggerDate.month
-                val year = triggerDate.year + 1900
-
-                //Setting the notification to go off 3 hours before the specified time
-                //If due is set at 12.30, Notification wil go off at 9.00
-                val triggerHour = triggerTime.hours - 3
-                //Variable unused for now
-                val triggerMinute = triggerTime.minutes
-
-
-                val calendar = Calendar.getInstance()
-                calendar.timeInMillis = System.currentTimeMillis()
-//            calendar.set(year,month,day,triggerHour,0,0) Uncomment after testing
-                //For testing
-                calendar.set(year, month, day, triggerTime.hours, triggerTime.minutes, 0)
-
-                AlarmManagerCompat.setExactAndAllowWhileIdle(
-                    alarmManager,
-                    AlarmManager.RTC_WAKEUP,
-                    calendar.timeInMillis,
-                    notifyPendingIntent
-                )
-            }
+            if(newTask.alarmFlag)
+                setNotification(taskId,task,application)
 
         }
     }
