@@ -20,36 +20,39 @@
         android:id="@+id/titleEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start_end"
-        android:layout_marginEnd="@dimen/margin_start_end"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="@dimen/margin_start_end"
+        android:layout_marginStart="@dimen/margin_start_end"
         android:hint="@string/title_hint"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:importantForAutofill="no"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/descriptionEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start_end"
-        android:layout_marginEnd="@dimen/margin_start_end"
         android:layout_marginTop="@dimen/margin_textview_top"
+        android:layout_marginEnd="@dimen/margin_start_end"
+        android:layout_marginStart="@dimen/margin_start_end"
         android:hint="@string/description_hint"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleEditText"
         android:importantForAutofill="no"
-        android:inputType="textMultiLine"/>
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
 
 
     <TextView
         android:id="@+id/prioritySpinnerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/margin_start_end"
+        android:layout_marginEnd="@dimen/margin_start_end"
         android:layout_marginTop="@dimen/margin_textview_top"
         android:labelFor="@+id/prioritySpinner"
         android:text="@string/priority_label"
@@ -67,13 +70,27 @@
         app:layout_constraintBottom_toBottomOf="@+id/prioritySpinnerLabel"
         app:layout_constraintStart_toEndOf="@+id/prioritySpinnerLabel" />
 
+    <TextView
+        android:id="@+id/alarmInstruction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_textview_top"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:text="@string/alarm_instruction"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:layout_marginStart="@dimen/margin_start_end"
+        android:layout_marginEnd="@dimen/margin_start_end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prioritySpinner" />
+
     <EditText
         android:id="@+id/datePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start_end"
-        android:layout_marginEnd="@dimen/margin_start_end"
-        android:layout_marginTop="@dimen/margin_textview_top"
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
@@ -82,7 +99,8 @@
         android:onClick="@{()->viewModel.onDatePickerClicked()}"
         android:text="@{viewModel.dateText}"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prioritySpinner" />
+        android:layout_marginTop="@dimen/margin_textview_top"
+        app:layout_constraintTop_toBottomOf="@+id/alarmInstruction" />
 
     <EditText
         android:id="@+id/timePicker"

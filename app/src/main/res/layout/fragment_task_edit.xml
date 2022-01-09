@@ -26,17 +26,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="@dimen/margin_start_end"
+            android:layout_marginEnd="@dimen/margin_start_end"
             android:layout_marginTop="24dp"/>
 
         <EditText
             android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_start_end"
-            android:layout_marginEnd="@dimen/margin_start_end"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/margin_start_end"
+            android:layout_marginStart="@dimen/margin_start_end"
             android:hint="@string/title_hint"
             android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTaskTitle" />
 
@@ -44,11 +46,12 @@
             android:id="@+id/descriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_start_end"
-            android:layout_marginEnd="@dimen/margin_start_end"
             android:layout_marginTop="@dimen/margin_textview_top"
+            android:layout_marginEnd="@dimen/margin_start_end"
+            android:layout_marginStart="@dimen/margin_start_end"
             android:hint="@string/description_hint"
             android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
 
@@ -74,13 +77,29 @@
             app:layout_constraintBottom_toBottomOf="@+id/prioritySpinnerLabel"
             app:layout_constraintStart_toEndOf="@+id/prioritySpinnerLabel" />
 
+        <TextView
+            android:id="@+id/alarmInstruction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_textview_top"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:text="@string/alarm_instruction"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:layout_marginStart="@dimen/margin_start_end"
+            android:layout_marginEnd="@dimen/margin_start_end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prioritySpinner" />
+
         <EditText
             android:id="@+id/datePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_textview_top"
-            android:layout_marginStart="@dimen/margin_start_end"
             android:layout_marginEnd="@dimen/margin_start_end"
+            android:layout_marginStart="@dimen/margin_start_end"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -88,16 +107,17 @@
             android:minHeight="48dp"
             android:onClick="@{()->viewModel.onDatePickerClicked()}"
             android:text="@{viewModel.dateText}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/prioritySpinner" />
+            app:layout_constraintTop_toBottomOf="@+id/alarmInstruction" />
 
         <EditText
             android:id="@+id/timePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_start_end"
-            android:layout_marginEnd="@dimen/margin_start_end"
             android:layout_marginTop="@dimen/margin_textview_top"
+            android:layout_marginEnd="@dimen/margin_start_end"
+            android:layout_marginStart="@dimen/margin_start_end"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -105,6 +125,7 @@
             android:minHeight="48dp"
             android:onClick="@{()->viewModel.onTimePickerClicked()}"
             android:text="@{viewModel.timeText}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/datePicker" />
 

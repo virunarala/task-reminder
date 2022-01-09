@@ -117,6 +117,9 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
                 //Setting ViewModel's Date
                 viewModel._dateText.value = date
+
+                if(viewModel._dateText.value!=null && viewModel._timeText.value!=null)
+                    binding.alarmSwitch.visibility = View.VISIBLE
             }
         }
 
@@ -139,7 +142,9 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
                 val time = timeFormat.format(calendar.time)
 
                 viewModel._timeText.value = time
-                binding.alarmSwitch.visibility = View.VISIBLE
+                
+                if(viewModel._dateText.value!=null && viewModel._timeText.value!=null)
+                    binding.alarmSwitch.visibility = View.VISIBLE
             }
         }
 
@@ -150,6 +155,7 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
                 fragment.show(parentFragmentManager,"datePicker")
 
                 viewModel.datePickerClickComplete()
+
             }
         })
 
@@ -160,6 +166,7 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
                 fragment.show(parentFragmentManager,"timePicker")
 
                 viewModel.timePickerClickComplete()
+
             }
         })
 

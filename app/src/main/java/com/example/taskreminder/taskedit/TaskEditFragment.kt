@@ -55,6 +55,10 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         //Dynamically setting the text of Alarm switch's title and description strings of different sizes using SpannableString
         binding.alarmSwitch.text = getSpannableAlarmLabel()
 
+        //Setting Alarm Switch visibility
+        if(args.taskDate.isEmpty()||args.taskTime.isEmpty())
+            binding.alarmSwitch.visibility = View.GONE
+
 
         //Populating the PrioritySpinner
         ArrayAdapter.createFromResource(requireContext(),R.array.priority_array,android.R.layout.simple_spinner_item)
@@ -172,6 +176,9 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
                 //Setting ViewModel's Date
                 viewModel._dateText.value = date
+
+                if(viewModel._dateText.value!=null && viewModel._timeText.value!=null)
+                    binding.alarmSwitch.visibility = View.VISIBLE
             }
         }
 
@@ -215,7 +222,9 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 val time = timeFormat.format(calendar.time)
 
                 viewModel._timeText.value = time
-                binding.alarmSwitch.visibility = View.VISIBLE
+
+                if(viewModel._dateText.value!=null && viewModel._timeText.value!=null)
+                    binding.alarmSwitch.visibility = View.VISIBLE
             }
         }
 

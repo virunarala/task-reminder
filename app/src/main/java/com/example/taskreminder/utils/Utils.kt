@@ -17,9 +17,9 @@ fun convertPriorityStringToInt(priority : String,resources : Resources):Int{
     }
 }
 
-fun getSpannableAlarmLabel(): String{
+fun getSpannableAlarmLabel(): SpannableString{
     val s="Alarm\nWould you like to reminded with an alarm?"
     val span : SpannableString = SpannableString(s)
     span.setSpan(RelativeSizeSpan(1.75f),0,5,0)
-    return span.toString()
+    return span
 }

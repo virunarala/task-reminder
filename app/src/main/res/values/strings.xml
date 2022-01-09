@@ -33,5 +33,6 @@
     <string name="task_notification_channel_id" translatable="false">task_channel</string>
     <string name="task_notification_channel_name">Task</string>
     <string name="task_notification_title">A Task is due today</string>
+    <string name="alarm_instruction">If you would like to be notified of this task, please select a date and time</string>
 
 </resources>
