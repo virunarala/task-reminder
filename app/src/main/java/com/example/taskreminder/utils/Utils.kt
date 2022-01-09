@@ -1,6 +1,8 @@
 package com.example.taskreminder.utils
 
 import android.content.res.Resources
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
 import com.example.taskreminder.R
 
 fun convertPriorityStringToInt(priority : String,resources : Resources):Int{
@@ -13,4 +15,11 @@ fun convertPriorityStringToInt(priority : String,resources : Resources):Int{
         priorityArray[4]->4 //Unimportant
         else->1
     }
+}
+
+fun getSpannableAlarmLabel(): String{
+    val s="Alarm\nWould you like to reminded with an alarm?"
+    val span : SpannableString = SpannableString(s)
+    span.setSpan(RelativeSizeSpan(1.75f),0,5,0)
+    return span.toString()
 }

@@ -22,6 +22,7 @@ import com.example.taskreminder.R
 import com.example.taskreminder.database.TaskDatabase
 import com.example.taskreminder.databinding.FragmentTaskEditBinding
 import com.example.taskreminder.taskadd.TaskEditTextData
+import com.example.taskreminder.utils.getSpannableAlarmLabel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,10 +53,7 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         viewModel._timeText.value = args.taskTime
 
         //Dynamically setting the text of Alarm switch's title and description strings of different sizes using SpannableString
-        val s="Alarm\nWould you like to reminded with an alarm?"
-        val span : SpannableString = SpannableString(s)
-        span.setSpan(RelativeSizeSpan(1.75f),0,5,0)
-        binding.alarmSwitch.text = span
+        binding.alarmSwitch.text = getSpannableAlarmLabel()
 
 
         //Populating the PrioritySpinner
