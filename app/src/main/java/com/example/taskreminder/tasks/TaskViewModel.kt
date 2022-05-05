@@ -1,10 +1,8 @@
 package com.example.taskreminder.tasks
 
-import android.app.Application
 import androidx.lifecycle.*
 import com.example.taskreminder.database.Task
 import com.example.taskreminder.database.TaskDao
-import com.example.taskreminder.database.TaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject

@@ -4,10 +4,7 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.text.SpannableString
 import android.text.format.DateFormat
-import android.text.style.RelativeSizeSpan
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,10 +13,8 @@ import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.taskreminder.R
-import com.example.taskreminder.database.TaskDatabase
 import com.example.taskreminder.databinding.FragmentTaskEditBinding
 import com.example.taskreminder.taskadd.TaskEditTextData
 import com.example.taskreminder.utils.getSpannableAlarmLabel

@@ -1,21 +1,14 @@
 package com.example.taskreminder.taskadd
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
-import androidx.core.app.AlarmManagerCompat
 import androidx.lifecycle.*
 import com.example.taskreminder.database.Task
 import com.example.taskreminder.utils.convertPriorityStringToInt
 import com.example.taskreminder.database.TaskDao
-import com.example.taskreminder.receiver.AlarmReceiver
 import com.example.taskreminder.utils.setNotification
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel

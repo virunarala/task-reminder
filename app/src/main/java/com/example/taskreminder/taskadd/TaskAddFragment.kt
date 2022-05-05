@@ -59,9 +59,9 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
 
         //Handling click event of Add Task button
-        viewModel.isAddTaskClicked.observe(viewLifecycleOwner, {
-            if(it){
-                if(TextUtils.isEmpty(binding.titleEditText.text))
+        viewModel.isAddTaskClicked.observe(viewLifecycleOwner) {
+            if (it) {
+                if (TextUtils.isEmpty(binding.titleEditText.text))
                     binding.titleEditText.error = "Title is required"
                 else {
                     viewModel.addTask(
@@ -76,16 +76,16 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
                     )
                 }
             }
-        })
+        }
 
 
         //Toast displayed on creation of a new task and Navigation to TaskFragment
-        viewModel.hasTaskCreated.observe(viewLifecycleOwner,{
-            if(it){
-                Toast.makeText(context,"New Task Added",Toast.LENGTH_SHORT).show()
+        viewModel.hasTaskCreated.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, "New Task Added", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(TaskAddFragmentDirections.actionTaskAddFragmentToTaskFragment())
             }
-        })
+        }
 
 
         val calendar = Calendar.getInstance()
@@ -149,26 +149,26 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
         }
 
         //Handling click event of DatePicker
-        viewModel.isDatePickerClicked.observe(viewLifecycleOwner, {
-            if(it){
+        viewModel.isDatePickerClicked.observe(viewLifecycleOwner) {
+            if (it) {
                 val fragment = DatePickerFragment()
-                fragment.show(parentFragmentManager,"datePicker")
+                fragment.show(parentFragmentManager, "datePicker")
 
                 viewModel.datePickerClickComplete()
 
             }
-        })
+        }
 
         //Handling click event of TimePicker
-        viewModel.isTimePickerClicked.observe(viewLifecycleOwner, {
-            if(it){
+        viewModel.isTimePickerClicked.observe(viewLifecycleOwner) {
+            if (it) {
                 val fragment = TimePickerFragment()
-                fragment.show(parentFragmentManager,"timePicker")
+                fragment.show(parentFragmentManager, "timePicker")
 
                 viewModel.timePickerClickComplete()
 
             }
-        })
+        }
 
 
         return binding.root

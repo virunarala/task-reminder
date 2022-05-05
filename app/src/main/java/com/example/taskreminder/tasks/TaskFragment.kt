@@ -32,7 +32,7 @@ class TaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding : FragmentTaskBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_task,
-        container,false);
+        container,false)
 
 
         binding.setLifecycleOwner(this)
@@ -52,11 +52,11 @@ class TaskFragment : Fragment() {
 //        binding.taskList.overScrollMode = View.OVER_SCROLL_IF_CONTENT_SCROLLS
 
         //Showing a descriptive TextView when the list of Tasks is empty
-        viewModel.taskCount.observe(viewLifecycleOwner,{
-            if(it==0){
+        viewModel.taskCount.observe(viewLifecycleOwner) {
+            if (it == 0) {
                 binding.emptyListTextView.visibility = View.VISIBLE
             }
-        })
+        }
 
 
         binding.addTaskFab.setOnClickListener {
@@ -66,8 +66,7 @@ class TaskFragment : Fragment() {
         }
 
         //Calling the function to create a NotificationChannel at the start of the app
-        createChannel(getString(R.string.task_notification_channel_id),
-            getString(R.string.task_notification_channel_name))
+        createChannel(getString(R.string.task_notification_channel_id),getString(R.string.task_notification_channel_name))
 
         return binding.root
     }
