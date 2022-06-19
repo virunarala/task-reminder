@@ -37,10 +37,6 @@ class TaskFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
-        //Creating the ViewModel
-//        val application = requireNotNull(this.activity).application
-//        val dataSource = TaskDatabase.getInstance(application).taskDao
-
         binding.viewModel = viewModel
 
         //Setting the RecyclerView Adapter
@@ -66,6 +62,7 @@ class TaskFragment : Fragment() {
         }
 
         //Calling the function to create a NotificationChannel at the start of the app
+        //NOTE: It is safe to call this repeatedly because trying to create an existing channel results in no operation being performed.
         createChannel(getString(R.string.task_notification_channel_id),getString(R.string.task_notification_channel_name))
 
         return binding.root
@@ -83,7 +80,7 @@ class TaskFragment : Fragment() {
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.BLUE
             notificationChannel.enableVibration(true)
-            notificationChannel.description = "Task Reminder Notifications"
+            notificationChannel.description = "Task Reminders"
 
             val notificationManager = requireActivity().getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(notificationChannel)

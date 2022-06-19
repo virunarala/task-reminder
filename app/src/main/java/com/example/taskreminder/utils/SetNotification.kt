@@ -30,20 +30,18 @@ fun setNotification(taskId: Long, task: TaskEditTextData, application: Context) 
         )
 
     if (task.date != "" && task.time != "") {
-        val triggerDate =
+        val triggerTime =
             SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(task.date)!!
-        val triggerTime = SimpleDateFormat("HH:mm", Locale.ENGLISH).parse(task.time)!!
 
-        val day = triggerDate.date
-        val month = triggerDate.month
-        val year = triggerDate.year + 1900
+        val day = triggerTime.date
+        val month = triggerTime.month
+        val year = triggerTime.year + 1900
 
 
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
-//      calendar.set(year,month,day,triggerHour,0,0) Uncomment after testing
-        //For testing
-        calendar.set(year, month, day, triggerDate.hours, triggerDate.minutes, 0)
+
+        calendar.set(year, month, day, triggerTime.hours, triggerTime.minutes, 0)
 
         AlarmManagerCompat.setExactAndAllowWhileIdle(
             alarmManager,

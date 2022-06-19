@@ -52,6 +52,7 @@ class TaskAddFragment : Fragment(), AdapterView.OnItemSelectedListener{
             .also{adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.prioritySpinner.adapter = adapter
+                //Default priority is 'HIGH'
                 binding.prioritySpinner.setSelection(1)
             }
         binding.prioritySpinner.onItemSelectedListener=this
