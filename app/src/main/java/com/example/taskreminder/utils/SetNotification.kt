@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.core.app.AlarmManagerCompat
 import com.example.taskreminder.receiver.AlarmReceiver
 import com.example.taskreminder.taskadd.TaskEditTextData
@@ -11,6 +12,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun setNotification(taskId: Long, task: TaskEditTextData, application: Context) {
+
+    val TAG = "SetNotification"
 
     //Fields Alarm and Notification features
     val alarmManager = application.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -30,17 +33,20 @@ fun setNotification(taskId: Long, task: TaskEditTextData, application: Context) 
         )
 
     if (task.date != "" && task.time != "") {
-        val triggerTime =
-            SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(task.date)!!
+        val triggerDate = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(task.date)!!
 
-        val day = triggerTime.date
-        val month = triggerTime.month
-        val year = triggerTime.year + 1900
+        val triggerTime = SimpleDateFormat("HH:mm",Locale.ENGLISH).parse(task.time)!!
+
+        val day = triggerDate.date
+        val month = triggerDate.month
+        val year = triggerDate.year + 1900
 
 
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
 
+        Log.i(TAG,"Trigger hour: ${triggerTime.hours}")
+        Log.i(TAG,"Trigger minute: ${triggerTime.minutes}")
         calendar.set(year, month, day, triggerTime.hours, triggerTime.minutes, 0)
 
         AlarmManagerCompat.setExactAndAllowWhileIdle(

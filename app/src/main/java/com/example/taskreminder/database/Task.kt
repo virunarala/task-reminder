@@ -23,6 +23,9 @@ data class Task(
     val taskTime : String = "",
 
     @ColumnInfo(name="alarm")
-    val alarmFlag : Boolean = false
+    val alarmFlag : Boolean = false,
+
+    @ColumnInfo(name="finished")
+    val isFinished: Boolean = false
 )
 

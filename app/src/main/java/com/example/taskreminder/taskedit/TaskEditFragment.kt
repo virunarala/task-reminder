@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
@@ -72,19 +73,21 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
 
         //Handling click event of UpdateTask button
-        viewModel.isUpdateTaskClicked.observe(viewLifecycleOwner, {
-            if(it){
+        viewModel.isUpdateTaskClicked.observe(viewLifecycleOwner) {
+            if (it) {
                 viewModel.updateTask(
                     args.taskId,
-                    TaskEditTextData(binding.titleEditText.text.toString(),
-                    binding.descriptionEditText.text.toString(),
-                    binding.prioritySpinner.selectedItem.toString(),
-                    binding.datePicker.text.toString(),
-                    binding.timePicker.text.toString(),
-                    binding.alarmSwitch.isChecked)
+                    TaskEditTextData(
+                        binding.titleEditText.text.toString(),
+                        binding.descriptionEditText.text.toString(),
+                        binding.prioritySpinner.selectedItem.toString(),
+                        binding.datePicker.text.toString(),
+                        binding.timePicker.text.toString(),
+                        binding.alarmSwitch.isChecked
+                    )
                 )
             }
-        })
+        }
 
         //Toast displayed on updating the task and Navigation to TaskFragment
         viewModel.hasTaskUpdated.observe(viewLifecycleOwner,{
@@ -95,11 +98,12 @@ class TaskEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         })
 
         //Handling click event of DeleteTask button
-        viewModel.isDeleteTaskClicked.observe(viewLifecycleOwner, {
-            if(it){
+        viewModel.isDeleteTaskClicked.observe(viewLifecycleOwner) {
+            //(TODO) Show an alert dialog to confirm delete if task is unfinished
+            if (it) {
                 viewModel.deleteTask(args.taskId)
             }
-        })
+        }
 
         //Toast displayed on deleting the task and Navigation to TaskFragment
         viewModel.hasTaskDeleted.observe(viewLifecycleOwner,{
